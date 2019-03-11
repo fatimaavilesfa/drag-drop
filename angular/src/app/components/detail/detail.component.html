@@ -1,0 +1,12 @@
+<form [formGroup]="profileForm" (ngSubmit)="sendData()"
+      class="card" style="width: 400px; height: 300px;">
+    <div >
+      <label for="exampleFormControlInput1">Name:</label>
+        <input type="text" class="form-control" formControlName="name">
+    </div>
+    <div >
+      <label for="exampleFormControlSelect1">Title</label>
+        <input type="text" class="form-control" formControlName="title">
+    </div>
+      <button class="btn btn-secondary bnt-sm"  (click)="sendData()" >Submit</button>
+  </form>

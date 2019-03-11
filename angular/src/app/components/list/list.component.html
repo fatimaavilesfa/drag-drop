@@ -1,0 +1,70 @@
+
+  <div class="example-container">
+    <div
+      id="icons"
+      cdkDropList
+      class="example-list"
+      [cdkDropListData]="icons"
+      cdkDropListConnectedTo="items"
+      (cdkDropListDropped)="drop($event)"
+      >
+      <div
+        class="square"
+        *ngFor="let icon of icons"
+        [cdkDragData]="icon"
+        cdkDrag>
+        <div  align="center" >
+          {{ icon }}
+            <i class="far fa-file-alt center" style="font-size: 50px;" ></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h3>Line</h3>
+        <div
+            id="items"
+            cdkDropList
+            [cdkDropListData]="items"
+            (cdkDropListDropped)="drop($event)">
+          <div
+            class="list-container"
+            *ngFor="let item of items"
+            cdkDrag>
+              {{ item }}
+          </div>
+        </div>
+    </div>
+
+    <div
+        id="items"
+        dkDropList
+        (cdkDropListDropped)="drop($event)"
+        >
+      <div
+         *ngFor="let item of items"
+         cdkDrag>
+
+
+        <div class="row" >
+            <div class="col-sm-3">
+              <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-arrows-alt" cdkDragHandle></i>
+                  <h5 class="card-title" class="text-center">{{ data.name }} </h5>
+                  {{ items }} {{ data.title }}
+                  <button (click)="edit()" class="btn btn-primary btn-sm">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+    <app-detail (dataEvent)="reciveData($event)"></app-detail>
+
+
+
+
+

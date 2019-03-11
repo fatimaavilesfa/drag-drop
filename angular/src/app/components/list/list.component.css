@@ -1,0 +1,23 @@
+.square {
+  height: 100px;
+  width: 100px;
+  background-color: #42e2f4;
+}
+
+
+.example-container {
+  width: 200px;
+  max-width: 80%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.list-container {
+  height: 30px;
+  width: 15%;
+  border: 1px solid saddlebrown;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
