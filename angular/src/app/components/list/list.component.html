@@ -3,11 +3,11 @@
     <div
       id="icons"
       cdkDropList
+      #iconList="cdkDropList"
       class="example-list"
       [cdkDropListData]="icons"
-      cdkDropListConnectedTo="items"
       (cdkDropListDropped)="drop($event)"
-      >
+      cdkDropListConnectedTo="childItems">
       <div
         class="square"
         *ngFor="let icon of icons"
@@ -26,8 +26,10 @@
         <div
             id="items"
             cdkDropList
+            #itemList="cdkDropList"
             [cdkDropListData]="items"
-            (cdkDropListDropped)="drop($event)">
+            (cdkDropListDropped)="drop($event)"
+            [cdkDropListConnectedTo]="[iconList, childItemList]">
           <div
             class="list-container"
             *ngFor="let item of items"
@@ -37,31 +39,65 @@
         </div>
     </div>
 
+
+
+
     <div
-        id="items"
-        dkDropList
-        (cdkDropListDropped)="drop($event)"
-        >
-      <div
-         *ngFor="let item of items"
-         cdkDrag>
+    dkDropList
+    (cdkDropListDropped)="drop($event)">
+  <div
+     *ngFor="let item of items"
+     cdkDrag
+     (cdkDragStarted)="dragStarted($event)"
+     (cdkDragEnded)="dragEnded($event)"
+     (cdkDragMoved)="dragMoved($event)">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header">
+              <i class="fas fa-arrows-alt" cdkDragHandle></i>
+              {{ data.name }}
+            </div>
+            <div class="card-body">
+            <div class="card-body">
+                <h5 class="card-title" class="text-center"> {{ item }} {{ data.title }}</h5>
+                <button (click)="concat()"  class="btn btn-primary btn-sm">Edit</button>
 
 
-        <div class="row" >
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-body">
-                    <i class="fas fa-arrows-alt" cdkDragHandle></i>
-                  <h5 class="card-title" class="text-center">{{ data.name }} </h5>
-                  {{ items }} {{ data.title }}
-                  <button (click)="edit()" class="btn btn-primary btn-sm">Edit</button>
+
+
+
+
+                    <h3>Child</h3>
+
+                    <div
+                        id="childItems"
+                        cdkDropList
+                        #childItemList="cdkDropList"
+                        [cdkDropListData]="childItems"
+                        (cdkDropListDropped)="drop($event)"
+                        [cdkDropListConnectedTo]="[iconList, itemList]">
+                      <div
+                        *ngFor="let childItem of childItems"
+                        cdkDrag>
+                        <div class="card">
+                            <div class="card-body">
+                          {{ childItem }}
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
-              </div>
+
+
+
             </div>
           </div>
 
-      </div>
-    </div>
+  </div>
+</div>
+</div>
+
+
+
     <app-detail (dataEvent)="reciveData($event)"></app-detail>
 
 
