@@ -15,10 +15,10 @@ export class ListComponent implements OnInit {
     name: "",
     title: ""
   };
-
+  empty:any;
   icons: any = [1, 2, 3];
   items: any = [4];
-  childItems: any = [5,6];
+  childItems: any = [5];
   // items: any = [{
   //   state : "",
   //   position : ""
@@ -36,6 +36,14 @@ export class ListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.resetList();
+  }
+
+  private resetList() {
+    this.empty = [];
+    setTimeout(() => {
+      this.empty = this.icons.slice();
+    }, 0);
   }
 
 
@@ -85,5 +93,13 @@ export class ListComponent implements OnInit {
       console.log("no");
     }
   }
+
+
+  addToList(event: CdkDragDrop<string[]>) {
+    this.childItems.push(this.empty[event.previousIndex]);
+    this.resetList();
+  }
+
+
 
 }

@@ -59,28 +59,34 @@
             <div class="card-body">
             <div class="card-body">
                 <h5 class="card-title" class="text-center"> {{ item }} {{ data.title }}</h5>
-                <button (click)="concat()"  class="btn btn-primary btn-sm">Edit</button>
 
 
-
-
-
-
-                    <h3>Child</h3>
+                    <h3>Added Items</h3>
 
                     <div
                         id="childItems"
                         cdkDropList
                         #childItemList="cdkDropList"
                         [cdkDropListData]="childItems"
-                        (cdkDropListDropped)="drop($event)"
+                        (cdkDropListDropped)="addToList($event)"
                         [cdkDropListConnectedTo]="[iconList, itemList]">
                       <div
                         *ngFor="let childItem of childItems"
                         cdkDrag>
                         <div class="card">
                             <div class="card-body">
-                          {{ childItem }}
+
+                                <table style="width:100%">
+                                    <tr>
+                                      <th>
+                                          <i class="fab fa-angular"></i>
+                                          {{ childItem }} {{ data.name }}
+                                      </th>
+                                    </tr>
+                                    <tr>
+                                      <td>{{data.title}}</td>
+                                    </tr>
+                                  </table>
                       </div>
                     </div>
 
