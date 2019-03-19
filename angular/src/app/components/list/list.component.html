@@ -68,6 +68,7 @@
                         #childItemList="cdkDropList"
                         [cdkDropListData]="childItems"
                         (cdkDropListDropped)="itemDropped($event)"
+                        (cdkDragStarted)="dragStart($event)"
                         [cdkDropListConnectedTo]="[iconList, itemList]">
                       <div
                         *ngFor="let childItem of childItems"

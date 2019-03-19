@@ -18,7 +18,6 @@ export class ListComponent implements OnInit {
     title: ""
   };
 
-  empty:any;
 
   icons: any = [1, 2, 3];
 
@@ -49,14 +48,14 @@ export class ListComponent implements OnInit {
 
   itemDropped(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(this.icons, event.previousIndex, event.currentIndex);
+      moveItemInArray(this.childItems, event.previousIndex, event.currentIndex);
     } else {
       this.addField(event.item.data, event.currentIndex);
     }
   }
 
-  addField(fieldType: any, index: number) {
-    this.childItems.splice(index, 0, fieldType);
+  addField(fieldType: any, index: number ) {
+      this.childItems.splice(index, 0, fieldType);
   }
 
   // constructor() { }
