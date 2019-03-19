@@ -30,7 +30,7 @@
             cdkDropList
             #itemList="cdkDropList"
             [cdkDropListData]="items"
-            (cdkDropListDropped)="itemDropped($event)"
+            (cdkDropListDropped)="drop($event)"
             [cdkDropListConnectedTo]="[iconList, childItemList]">
           <div
             class="list-container"
