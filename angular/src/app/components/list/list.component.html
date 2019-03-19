@@ -6,7 +6,9 @@
       #iconList="cdkDropList"
       class="example-list"
       [cdkDropListData]="icons"
-      (cdkDropListDropped)="drop($event)"
+      (cdkDropListDropped)="itemDropped($event)"
+      (cdkDragStarted)="dragStart($event)"
+      (cdkDragMoved)="moved($event)"
       cdkDropListConnectedTo="childItems">
       <div
         class="square"
@@ -28,7 +30,7 @@
             cdkDropList
             #itemList="cdkDropList"
             [cdkDropListData]="items"
-            (cdkDropListDropped)="drop($event)"
+            (cdkDropListDropped)="itemDropped($event)"
             [cdkDropListConnectedTo]="[iconList, childItemList]">
           <div
             class="list-container"
@@ -44,13 +46,10 @@
 
     <div
     dkDropList
-    (cdkDropListDropped)="drop($event)">
+    (cdkDropListDropped)="itemDropped($event)">
   <div
      *ngFor="let item of items"
-     cdkDrag
-     (cdkDragStarted)="dragStarted($event)"
-     (cdkDragEnded)="dragEnded($event)"
-     (cdkDragMoved)="dragMoved($event)">
+     cdkDrag>
         <div class="card border-dark mb-3" style="max-width: 18rem;">
           <div class="card-header">
               <i class="fas fa-arrows-alt" cdkDragHandle></i>
@@ -68,7 +67,7 @@
                         cdkDropList
                         #childItemList="cdkDropList"
                         [cdkDropListData]="childItems"
-                        (cdkDropListDropped)="addToList($event)"
+                        (cdkDropListDropped)="itemDropped($event)"
                         [cdkDropListConnectedTo]="[iconList, itemList]">
                       <div
                         *ngFor="let childItem of childItems"
