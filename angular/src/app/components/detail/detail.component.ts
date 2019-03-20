@@ -15,16 +15,21 @@ export class DetailComponent implements OnInit {
     title: new FormControl(''),
   });
 
-  constructor() { }
+  showSelected: boolean = true;
+
+  constructor() {
+  }
+
+  show() {
+    this.showSelected = true;
+  }
+
+  hide() {
+    this.showSelected = false;
+  }
 
   ngOnInit() {
   }
-
-  // onSubmit() {
-  //   // tslint:disable-next-line:no-unused-expression
-  //   console.log(this.profileForm.value);
-
-  // }
 
 
 

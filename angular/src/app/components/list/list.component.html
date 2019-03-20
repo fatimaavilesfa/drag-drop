@@ -1,4 +1,4 @@
-
+<!--Icons List-->
   <div class="example-container">
     <div
       id="icons"
@@ -6,7 +6,6 @@
       #iconList="cdkDropList"
       class="example-list"
       [cdkDropListData]="icons"
-      (cdkDropListDropped)="itemDropped($event)"
       (cdkDragStarted)="dragStart($event)"
       (cdkDragMoved)="moved($event)"
       cdkDropListConnectedTo="childItems">
@@ -23,6 +22,7 @@
       </div>
     </div>
 
+  <!--Items List-->
     <div class="example-container">
       <h3>Line</h3>
         <div
@@ -41,70 +41,71 @@
         </div>
     </div>
 
-
-
-
+  <!--Dragable Items-->
     <div
-    dkDropList
-    (cdkDropListDropped)="itemDropped($event)">
-  <div
-     *ngFor="let item of items"
-     cdkDrag>
-        <div class="card border-dark mb-3" style="max-width: 18rem;">
-          <div class="card-header">
-              <i class="fas fa-arrows-alt" cdkDragHandle></i>
-              {{ data.name }}
-            </div>
+      dkDropList
+      (cdkDropListDropped)="itemDropped($event)">
+    <div
+        *ngFor="let item of items"
+        cdkDrag
+        (click)="singleClick()">
+      <div class="card border-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">
+          <i class="fas fa-arrows-alt" cdkDragHandle></i>
+            {{ data.name }}
+         </div>
+           <div class="card-body">
             <div class="card-body">
-            <div class="card-body">
-                <h5 class="card-title" class="text-center"> {{ item }} {{ data.title }}</h5>
+              <h5 class="card-title" class="text-center"> {{ item }} {{ data.title }}</h5>
 
-
-                    <h3>Added Items</h3>
-
+                <!--Child Item -->
+                <h3>Added Items</h3>
+                  <div
+                    id="childItems"
+                    cdkDropList
+                    #childItemList="cdkDropList"
+                    [cdkDropListData]="childItems"
+                    (cdkDropListDropped)="itemDropped($event)"
+                    (cdkDragStarted)="dragStart($event)"
+                    [cdkDropListConnectedTo]="[iconList, itemList]">
                     <div
-                        id="childItems"
-                        cdkDropList
-                        #childItemList="cdkDropList"
-                        [cdkDropListData]="childItems"
-                        (cdkDropListDropped)="itemDropped($event)"
-                        (cdkDragStarted)="dragStart($event)"
-                        [cdkDropListConnectedTo]="[iconList, itemList]">
-                      <div
-                        *ngFor="let childItem of childItems"
-                        cdkDrag>
-                        <div class="card">
-                            <div class="card-body">
+                      *ngFor="let childItem of childItems"
+                      cdkDrag
+                      (dblclick)="doubleClick()">
+                      <div class="card">
+                        <div class="card-body">
 
-                                <table style="width:100%">
-                                    <tr>
-                                      <th>
-                                          <i class="fab fa-angular"></i>
-                                          {{ childItem }} {{ data.name }}
-                                      </th>
-                                    </tr>
-                                    <tr>
-                                      <td>{{data.title}}</td>
-                                    </tr>
-                                  </table>
+                          <!--Table in child Item-->
+                          <table style="width:100%">
+                            <tr>
+                              <th>
+                               <i class="fab fa-angular"></i>
+                                {{ childItem }} {{ data.name }}
+                              </th>
+                            </tr>
+                            <hr>
+                              <tr>
+                                <td>{{data.title}}</td>
+                              </tr>
+                          </table>
+
                       </div>
                     </div>
-
                   </div>
                 </div>
 
-
-
             </div>
-          </div>
+        </div>
 
+    </div>
   </div>
 </div>
-</div>
 
 
+  <!--Details Component-->
+  <app-detail (dataEvent)="reciveData($event)"></app-detail>
 
-    <app-detail (dataEvent)="reciveData($event)"></app-detail>
+
 
 
 

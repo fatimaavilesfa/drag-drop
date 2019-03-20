@@ -1,5 +1,16 @@
 form {
   position: fixed;
+  top: 50px;
+  right: 0px;
+}
+
+header {
+  position: fixed;
   top: 0px;
   right: 0px;
+
+}
+
+div {
+  display: inline-block;
 }

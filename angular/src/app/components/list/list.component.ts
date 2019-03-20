@@ -1,6 +1,7 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatList } from '@angular/material';
-import {CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem,  CdkDragStart, CdkDragEnd, CdkDragMove, copyArrayItem } from '@angular/cdk/drag-drop';
+import {CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem,  CdkDragStart, CdkDragMove, copyArrayItem } from '@angular/cdk/drag-drop';
+
 
 
 
@@ -13,21 +14,25 @@ export class ListComponent implements OnInit {
 
   @ViewChild(MatList, { read: ElementRef }) child: ElementRef;
 
+  @Output() dataEmitter = new EventEmitter<any>();
+
   data: any = {
     name: "",
     title: ""
   };
 
 
-  icons: any = [1, 2, 3];
+  icons: any = [1, 2, 3, 4];
 
-  items: any = [4];
+  items: any = [5];
 
-  childItems: any = [5];
+  childItems: any = [6];
 
   _currentField;
 
   _currentIndex;
+
+  isSingleClick: Boolean = true;
 
   ngOnInit() {
 
@@ -58,46 +63,36 @@ export class ListComponent implements OnInit {
       this.childItems.splice(index, 0, fieldType);
   }
 
-  // constructor() { }
-
-
-  // on init  this.resetList();
-  // private resetList() {
-  //   this.empty = [];
-  //   setTimeout(() => {
-  //     this.empty = this.icons.slice();
-  //   }, 0);
-  // }
-
 
   drop(event: CdkDragDrop<any>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
                         event.currentIndex);
-    }
   }
 
-
-
-  // addToList(event: CdkDragDrop<string[]>) {
-  //   this.childItems.push(this.empty[event.previousIndex]);
-  //   this.resetList();
-  // }
-
-
-
-  edit() {
-    console.log(this.items);
-    console.log(this.data );
-  }
 
   reciveData($event) {
     this.data = $event;
+     console.log(this.data);
   }
+
+  singleClick() {
+    this.isSingleClick = true;
+    setTimeout(() => {
+        if(this.isSingleClick) {
+          console.log('single Click', this.data.name);
+        }
+      },200)
+  }
+
+  doubleClick() {
+    this.isSingleClick = false;
+    console.log('double click');
+    this.dataEmitter = this.data;
+    console.log(this.dataEmitter);
+  }
+
 
 
 }
