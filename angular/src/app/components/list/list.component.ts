@@ -1,6 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild,  Input, EventEmitter } from '@angular/core';
 import { MatList } from '@angular/material';
-import {CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem,  CdkDragStart, CdkDragMove, copyArrayItem } from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem,  CdkDragStart, CdkDragMove} from '@angular/cdk/drag-drop';
 
 
 
@@ -14,13 +14,7 @@ export class ListComponent implements OnInit {
 
   @ViewChild(MatList, { read: ElementRef }) child: ElementRef;
 
-  @Output() dataEmitter = new EventEmitter<any>();
-
-  data: any = {
-    name: "",
-    title: ""
-  };
-
+  data = {};
 
   icons: any = [1, 2, 3, 4];
 
@@ -28,13 +22,18 @@ export class ListComponent implements OnInit {
 
   childItems: any = [6];
 
-  _currentField;
+  _currentField: any;
 
-  _currentIndex;
+  _currentIndex: any;
 
-  isSingleClick: Boolean = true;
+  isSingleClick: boolean = true;
+
+  constructor() {
+
+  }
 
   ngOnInit() {
+
 
   }
 
@@ -72,25 +71,25 @@ export class ListComponent implements OnInit {
   }
 
 
-  reciveData($event) {
-    this.data = $event;
-     console.log(this.data);
-  }
+  // reciveDataFromDetail($event) {
+  //   this.data = $event;
+  // }
 
   singleClick() {
     this.isSingleClick = true;
     setTimeout(() => {
-        if(this.isSingleClick) {
-          console.log('single Click', this.data.name);
-        }
-      },200)
+      if(this.isSingleClick) {
+        this.data =  {title: 'Name', value: 'Title'};
+        console.log('single click', this.data);
+      }
+    } , 200);
   }
+
 
   doubleClick() {
     this.isSingleClick = false;
-    console.log('double click');
-    this.dataEmitter = this.data;
-    console.log(this.dataEmitter);
+    this.data = {title: 'Name', value: 'Title',  extra:'Info'};
+    console.log('double click', this.data );
   }
 
 

@@ -1,6 +1,6 @@
 
 <header>
-  <div  class="card-header" class="card" style="width: 400px; height: 50px;">
+  <div  class="card-header" class="card" style="width: 400px; height: 50px;" class="btn-secondary">
       Propiedades
     <div *ngIf="this.showSelected === true">
       <i class="fas fa-minus" (click)="hide()"></i>
@@ -11,9 +11,30 @@
       </div>
   </div>
 </header>
-    <div *ngIf="showSelected">
+      <div *ngIf="this.showSelected"  class="form">
+          <div class="card" style="width: 400px; height: 300px;">
+             <div *ngIf="data.title">
+               <label>{{ data.title }}</label>
+               <input type="text" >
+             </div>
+             <div *ngIf="data.value">
+              <label>{{ data.value }}</label>
+              <input type="text" >
+            </div>
+            <div *ngIf="data.extra">
+              <label>{{ data.extra }}</label>
+              <input type="text" >
+            </div>
+          </div>
+       </div>
+
+
+
+
+<!--
   <form [formGroup]="profileForm" (ngSubmit)="sendData()"
-        class="card" style="width: 400px; height: 300px;">
+        class="card" style="width: 400px; height: 300px;"
+        *ngIf="this.showSelected">
      <div >
         <label for="exampleFormControlInput1">Name:</label>
         <input type="text" class="form-control" formControlName="name">
@@ -22,6 +43,8 @@
             <label for="exampleFormControlSelect1">Title</label>
             <input type="text" class="form-control" formControlName="title">
         </div>
-          <button class="btn btn-secondary bnt-sm"  (click)="sendData()" >Submit</button>
-    </form>
-  </div>
+          <button class="btn btn-secondary bnt-sm"  (click)="sendData()">Submit</button>
+
+    </form>-->
+
+

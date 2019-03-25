@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 
@@ -9,16 +9,25 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class DetailComponent implements OnInit {
 
+  @Input() data: {};
+  @Output() dataChange = new EventEmitter<any>();
 
-  profileForm = new FormGroup({
-    name: new FormControl(''),
-    title: new FormControl(''),
-  });
+  // profileForm = new FormGroup({
+  //   name: new FormControl(''),
+  //   title: new FormControl('')
+  // });
 
   showSelected: boolean = true;
 
+  isSingleClick: boolean;
+
   constructor() {
+
   }
+
+  ngOnInit() {
+  }
+
 
   show() {
     this.showSelected = true;
@@ -28,17 +37,12 @@ export class DetailComponent implements OnInit {
     this.showSelected = false;
   }
 
-  ngOnInit() {
-  }
+  // sendData() {
+  //   this.dataEvent.emit(this.profileForm.value);
+  //   console.log(this.profileForm.value);
+  // }
 
 
-
-  @Output() dataEvent = new EventEmitter<any>();
-
-  sendData() {
-    this.dataEvent.emit(this.profileForm.value);
-    console.log(this.profileForm.value);
-  }
 
 
 

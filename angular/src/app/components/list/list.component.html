@@ -16,7 +16,7 @@
         cdkDrag>
         <div  align="center" >
           {{ icon }}
-            <i class="far fa-file-alt center" style="font-size: 50px;" ></i>
+            <i class="far fa-file-alt" style="font-size: 50px;" ></i>
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@
             class="list-container"
             *ngFor="let item of items"
             cdkDrag>
-              {{ item }}
+              {{item}}
           </div>
         </div>
     </div>
@@ -52,11 +52,11 @@
       <div class="card border-dark mb-3" style="max-width: 18rem;">
         <div class="card-header">
           <i class="fas fa-arrows-alt" cdkDragHandle></i>
-            {{ data.name }}
+            data.name
          </div>
            <div class="card-body">
             <div class="card-body">
-              <h5 class="card-title" class="text-center"> {{ item }} {{ data.title }}</h5>
+              <h5 class="card-title" class="text-center"> item  data.title</h5>
 
                 <!--Child Item -->
                 <h3>Added Items</h3>
@@ -75,17 +75,17 @@
                       <div class="card">
                         <div class="card-body">
 
-                          <!--Table in child Item-->
+                          <!--Table html in child Item-->
                           <table style="width:100%">
                             <tr>
                               <th>
                                <i class="fab fa-angular"></i>
-                                {{ childItem }} {{ data.name }}
+                                children
                               </th>
                             </tr>
                             <hr>
                               <tr>
-                                <td>{{data.title}}</td>
+                                <td>data.title</td>
                               </tr>
                           </table>
 
@@ -103,7 +103,7 @@
 
 
   <!--Details Component-->
-  <app-detail (dataEvent)="reciveData($event)"></app-detail>
+  <app-detail [data]="data" (dataEvent)="reciveDataFromDetail($event)" ></app-detail>
 
 
 
