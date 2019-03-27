@@ -1,8 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild,  Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import { MatList } from '@angular/material';
 import {CdkDragDrop, moveItemInArray, transferArrayItem,  CdkDragStart, CdkDragMove} from '@angular/cdk/drag-drop';
-
-
 
 
 @Component({
@@ -28,13 +26,17 @@ export class ListComponent implements OnInit {
 
   isSingleClick: boolean = true;
 
+  title: string = '';
+
+  value: string = '';
+
+  extra: string = '';
+
   constructor() {
 
   }
 
   ngOnInit() {
-
-
   }
 
   dragStart(event: CdkDragStart) {
@@ -62,18 +64,12 @@ export class ListComponent implements OnInit {
       this.childItems.splice(index, 0, fieldType);
   }
 
-
   drop(event: CdkDragDrop<any>) {
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
                         event.currentIndex);
   }
-
-
-  // reciveDataFromDetail($event) {
-  //   this.data = $event;
-  // }
 
   singleClick() {
     this.isSingleClick = true;
@@ -88,10 +84,13 @@ export class ListComponent implements OnInit {
 
   doubleClick() {
     this.isSingleClick = false;
-    this.data = {title: 'Name', value: 'Title',  extra:'Info'};
-    console.log('double click', this.data );
+    this.data = {title: 'Name', value: 'Category',  extra:'Info'};
   }
 
-
+  reciveData(data) {
+    this.title = data.title;
+    this.value = data.value;
+    this.extra = data.extra;
+  }
 
 }

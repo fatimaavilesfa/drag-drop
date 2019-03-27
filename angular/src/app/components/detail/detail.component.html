@@ -5,46 +5,26 @@
     <div *ngIf="this.showSelected === true">
       <i class="fas fa-minus" (click)="hide()"></i>
     </div>
-
     <div *ngIf="this.showSelected !== true">
         <i class="fas fa-plus" (click)="show()"></i>
-      </div>
+    </div>
   </div>
 </header>
-      <div *ngIf="this.showSelected"  class="form">
-          <div class="card" style="width: 400px; height: 300px;">
-             <div *ngIf="data.title">
-               <label>{{ data.title }}</label>
-               <input type="text" >
-             </div>
-             <div *ngIf="data.value">
-              <label>{{ data.value }}</label>
-              <input type="text" >
-            </div>
-            <div *ngIf="data.extra">
-              <label>{{ data.extra }}</label>
-              <input type="text" >
-            </div>
-          </div>
-       </div>
-
-
-
-
-<!--
-  <form [formGroup]="profileForm" (ngSubmit)="sendData()"
-        class="card" style="width: 400px; height: 300px;"
-        *ngIf="this.showSelected">
-     <div >
-        <label for="exampleFormControlInput1">Name:</label>
-        <input type="text" class="form-control" formControlName="name">
-     </div>
-        <div >
-            <label for="exampleFormControlSelect1">Title</label>
-            <input type="text" class="form-control" formControlName="title">
-        </div>
-          <button class="btn btn-secondary bnt-sm"  (click)="sendData()">Submit</button>
-
-    </form>-->
+<form *ngIf="this.showSelected"  class="form" >
+  <div class="card" style="width: 400px; height: 300px;">
+    <div *ngIf="data.title" class="form-group">
+      <label>{{ data.title }}</label>
+        <input type="text" class="form-control"  name="title" [(ngModel)]="dataForm.title" (input)="sendData(dataForm.title, dataForm.value, dataForm.extra)" >
+    </div>
+      <div *ngIf="data.value" class="form-group">
+        <label>{{ data.value }}</label>
+          <input type="text"  class="form-control"  name="value" [(ngModel)]="dataForm.value" (input)="sendData(dataForm.title, dataForm.value, dataForm.extra)" >
+      </div>
+      <div *ngIf="data.extra" class="form-group">
+        <label>{{ data.extra }}</label>
+          <input type="text" class="form-control"  name="extra" [(ngModel)]="dataForm.extra" (input)="sendData(dataForm.title, dataForm.value, dataForm.extra)" >
+      </div>
+  </div>
+</form>
 
 

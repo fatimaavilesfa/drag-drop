@@ -1,109 +1,71 @@
 <!--Icons List-->
   <div class="example-container">
-    <div
-      id="icons"
-      cdkDropList
-      #iconList="cdkDropList"
-      class="example-list"
-      [cdkDropListData]="icons"
-      (cdkDragStarted)="dragStart($event)"
-      (cdkDragMoved)="moved($event)"
-      cdkDropListConnectedTo="childItems">
-      <div
-        class="square"
-        *ngFor="let icon of icons"
-        [cdkDragData]="icon"
-        cdkDrag>
+    <div id="icons" cdkDropList #iconList="cdkDropList" class="example-list" [cdkDropListData]="icons" (cdkDragStarted)="dragStart($event)" (cdkDragMoved)="moved($event)" cdkDropListConnectedTo="childItems">
+      <div class="square" *ngFor="let icon of icons" [cdkDragData]="icon" cdkDrag>
         <div  align="center" >
           {{ icon }}
-            <i class="far fa-file-alt" style="font-size: 50px;" ></i>
-          </div>
+          <i class="far fa-file-alt" style="font-size: 50px;" ></i>
         </div>
       </div>
     </div>
+  </div>
 
   <!--Items List-->
     <div class="example-container">
       <h3>Line</h3>
-        <div
-            id="items"
-            cdkDropList
-            #itemList="cdkDropList"
-            [cdkDropListData]="items"
-            (cdkDropListDropped)="drop($event)"
-            [cdkDropListConnectedTo]="[iconList, childItemList]">
-          <div
-            class="list-container"
-            *ngFor="let item of items"
-            cdkDrag>
-              {{item}}
+        <div id="items" cdkDropList #itemList="cdkDropList" [cdkDropListData]="items" (cdkDropListDropped)="drop($event)" [cdkDropListConnectedTo]="[iconList, childItemList]">
+          <div class="list-container" *ngFor="let item of items" cdkDrag>
+            {{item}}
           </div>
         </div>
     </div>
 
   <!--Dragable Items-->
-    <div
-      dkDropList
-      (cdkDropListDropped)="itemDropped($event)">
-    <div
-        *ngFor="let item of items"
-        cdkDrag
-        (click)="singleClick()">
-      <div class="card border-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">
-          <i class="fas fa-arrows-alt" cdkDragHandle></i>
-            data.name
-         </div>
-           <div class="card-body">
+    <div dkDropList (cdkDropListDropped)="itemDropped($event)">
+      <div *ngFor="let item of items" cdkDrag (click)="singleClick()">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header">
+            <i class="fas fa-arrows-alt" cdkDragHandle></i>
+            {{title}}
+          </div>
             <div class="card-body">
-              <h5 class="card-title" class="text-center"> item  data.title</h5>
-
-                <!--Child Item -->
+              <h5 class="card-title" class="text-center" >
+                {{ item }} {{value}}
+              </h5>
+                <!--Child Item inside Item-->
                 <h3>Added Items</h3>
-                  <div
-                    id="childItems"
-                    cdkDropList
-                    #childItemList="cdkDropList"
-                    [cdkDropListData]="childItems"
-                    (cdkDropListDropped)="itemDropped($event)"
-                    (cdkDragStarted)="dragStart($event)"
-                    [cdkDropListConnectedTo]="[iconList, itemList]">
-                    <div
-                      *ngFor="let childItem of childItems"
-                      cdkDrag
-                      (dblclick)="doubleClick()">
+                  <div id="childItems" cdkDropList #childItemList="cdkDropList" [cdkDropListData]="childItems" (cdkDropListDropped)="itemDropped($event)" (cdkDragStarted)="dragStart($event)" [cdkDropListConnectedTo]="[iconList, itemList]">
+                    <div *ngFor="let childItem of childItems" cdkDrag (dblclick)="doubleClick()">
                       <div class="card">
                         <div class="card-body">
-
                           <!--Table html in child Item-->
                           <table style="width:100%">
                             <tr>
                               <th>
                                <i class="fab fa-angular"></i>
-                                children
+                                {{title}}
                               </th>
                             </tr>
                             <hr>
                               <tr>
-                                <td>data.title</td>
+                                <td>{{value}}</td>
+                              </tr>
+                              <tr>
+                                <td>{{extra}}</td>
                               </tr>
                           </table>
-
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
             </div>
         </div>
-
+      </div>
     </div>
-  </div>
-</div>
 
 
-  <!--Details Component-->
-  <app-detail [data]="data" (dataEvent)="reciveDataFromDetail($event)" ></app-detail>
+<!--Details Component-->
+<app-detail [data]="data" (sendToList)="reciveData($event)"></app-detail>
 
 
 

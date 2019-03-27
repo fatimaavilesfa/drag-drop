@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -9,13 +8,29 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class DetailComponent implements OnInit {
 
-  @Input() data: {};
   @Output() dataChange = new EventEmitter<any>();
 
-  // profileForm = new FormGroup({
-  //   name: new FormControl(''),
-  //   title: new FormControl('')
-  // });
+  @Output() formChange = new EventEmitter<any>();
+
+  @Output() sendToList = new EventEmitter<any>();
+
+  @Input() data: {};
+
+  @Input() get dataValue() {
+    return this.dataForm;
+  }
+
+  set dataValue(val) {
+    this.dataForm = val;
+    this.dataChange.emit(this.dataForm);
+   }
+
+
+  dataForm = {
+    title: '',
+    value: '',
+    extra: ''
+  };
 
   showSelected: boolean = true;
 
@@ -37,13 +52,8 @@ export class DetailComponent implements OnInit {
     this.showSelected = false;
   }
 
-  // sendData() {
-  //   this.dataEvent.emit(this.profileForm.value);
-  //   console.log(this.profileForm.value);
-  // }
-
-
-
-
+  sendData(title:string, value:string, extra:string){
+    this.sendToList.emit({title:title, value:value, extra:extra});
+  }
 
 }
