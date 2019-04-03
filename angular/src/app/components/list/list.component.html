@@ -67,6 +67,10 @@
 <!--Details Component-->
 <app-detail [data]="data" (sendToList)="reciveData($event)"></app-detail>
 
+<!--Log out-->
+<li  *ngIf="service.isLoggedIn" class="nav-item">
+  <a class="nav-link" class="btn btn-primary" (click)="service.logout()">Logout</a>
+</li>
 
 
 

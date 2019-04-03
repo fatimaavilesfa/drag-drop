@@ -18,12 +18,30 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import {MatDialogModule, MatFormFieldModule} from '@angular/material';
 
 
+//firebase
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { LoginComponent } from './admin/login/login.component';
+
+
+var config = {
+  apiKey: "AIzaSyAHXW6m1INR7bagnIk01tG8mKIqklYhAM0",
+  authDomain: "drag-drop-3ceed.firebaseapp.com",
+  databaseURL: "https://drag-drop-3ceed.firebaseio.com",
+  projectId: "drag-drop-3ceed",
+  storageBucket: "drag-drop-3ceed.appspot.com",
+  messagingSenderId: "1026918177386"
+};
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
-    DetailComponent
+    DetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +51,9 @@ import {MatDialogModule, MatFormFieldModule} from '@angular/material';
     DragDropModule,
     OverlayModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

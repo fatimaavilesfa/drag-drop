@@ -15,5 +15,38 @@
 </head>
 <body>
   <app-root></app-root>
+
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAHXW6m1INR7bagnIk01tG8mKIqklYhAM0",
+    authDomain: "drag-drop-3ceed.firebaseapp.com",
+    databaseURL: "https://drag-drop-3ceed.firebaseio.com",
+    projectId: "drag-drop-3ceed",
+    storageBucket: "drag-drop-3ceed.appspot.com",
+    messagingSenderId: "1026918177386"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!-- Firebase App is always required and must be first -->
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-functions.js"></script>
+
+
+<script>
+  var config = {
+    // ...
+  };
+  firebase.initializeApp(config);
+</script>
+
 </body>
 </html>

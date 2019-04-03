@@ -16,17 +16,34 @@ export class DetailComponent implements OnInit {
 
   @Input() data: {};
 
+  @Input() dataChild: {};
+
   @Input() get dataValue() {
-    return this.dataForm;
+    return this.dataForm, this.dataFormChild;
   }
+
+  // @Input() get dataChildValue() {
+  //   return this.dataFormChild;
+  // }
 
   set dataValue(val) {
     this.dataForm = val;
     this.dataChange.emit(this.dataForm);
    }
 
+   set dataChildValue(val) {
+    this.dataFormChild = val;
+    this.dataChange.emit(this.dataFormChild);
+   }
+
 
   dataForm = {
+    title: '',
+    value: '',
+    extra: ''
+  };
+
+  dataFormChild = {
     title: '',
     value: '',
     extra: ''

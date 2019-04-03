@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import { MatList } from '@angular/material';
 import {CdkDragDrop, moveItemInArray, transferArrayItem,  CdkDragStart, CdkDragMove} from '@angular/cdk/drag-drop';
-
+import { AuthService } from '..//..//auth/auth.service.service';
 
 @Component({
   selector: 'app-list',
@@ -13,6 +13,8 @@ export class ListComponent implements OnInit {
   @ViewChild(MatList, { read: ElementRef }) child: ElementRef;
 
   data = {};
+
+  dataChild = {};
 
   icons: any = [1, 2, 3, 4];
 
@@ -32,7 +34,7 @@ export class ListComponent implements OnInit {
 
   extra: string = '';
 
-  constructor() {
+  constructor( private service: AuthService) {
 
   }
 
@@ -84,7 +86,8 @@ export class ListComponent implements OnInit {
 
   doubleClick() {
     this.isSingleClick = false;
-    this.data = {title: 'Name', value: 'Category',  extra:'Info'};
+    console.log('double click', this.dataChild);
+    this.dataChild = {title: 'Name', value: 'Category',  extra: 'Info'};
   }
 
   reciveData(data) {

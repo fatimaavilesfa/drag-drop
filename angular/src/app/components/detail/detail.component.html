@@ -12,16 +12,16 @@
 </header>
 <form *ngIf="this.showSelected"  class="form" >
   <div class="card" style="width: 400px; height: 300px;">
-    <div *ngIf="data.title" class="form-group">
-      <label>{{ data.title }}</label>
+    <div *ngIf="dataForm.title; else dataFormChild.title" class="form-group">
+      <label>{{ dataForm.title }} {{ dataFormChild.title }}</label>
         <input type="text" class="form-control"  name="title" [(ngModel)]="dataForm.title" (input)="sendData(dataForm.title, dataForm.value, dataForm.extra)" >
     </div>
-      <div *ngIf="data.value" class="form-group">
-        <label>{{ data.value }}</label>
+      <div *ngIf="dataForm.value; else dataFormChild.value" class="form-group">
+        <label>{{ dataForm.value }} {{ dataFormChild.title }}</label>
           <input type="text"  class="form-control"  name="value" [(ngModel)]="dataForm.value" (input)="sendData(dataForm.title, dataForm.value, dataForm.extra)" >
       </div>
-      <div *ngIf="data.extra" class="form-group">
-        <label>{{ data.extra }}</label>
+      <div *ngIf="dataForm.extra; else dataFormChild.extra" class="form-group">
+        <label>{{ dataForm.extra }} {{ dataFormChild.title }}</label>
           <input type="text" class="form-control"  name="extra" [(ngModel)]="dataForm.extra" (input)="sendData(dataForm.title, dataForm.value, dataForm.extra)" >
       </div>
   </div>
